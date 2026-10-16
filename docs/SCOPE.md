@@ -1,5 +1,7 @@
 # Coverage and company use
 
+The [continuing agent](../agent/START%20HERE.md) adds onboarding, saved company context, per-release records, a tracker and shareable updates. Its first target is local macOS sessions in Codex desktop and Claude Code desktop, with permitted file and native-helper access. It does not require a separate language runtime. [Agent acceptance tests](AGENT-PRD.md#14-acceptance-tests) distinguish implemented behavior from desktop and independent-user release gates. The earlier document-review scope below remains the basis of the original comparison.
+
 The assistant reviews preparation for a specific release and time. It returns a readiness recommendation, customer consequences, evidence, proposed owner actions, resolved/reopened findings and unknowns.
 
 | Area | Input examples | Review question |
@@ -17,7 +19,7 @@ The assistant reviews preparation for a specific release and time. It returns a 
 | Rollout | Equal-window contacts, exposed accounts, categories, reports | Does the supplied pause rule require escalation? Who recommends, authorizes and executes? |
 | Follow-up | Defect, deployment, remedy, customer reply, feedback | Is the customer recovered, or only the engineering issue fixed? |
 
-The company policy supplies the rules. The demo requires a product announcement at least 72 hours before launch: three calendar days, not a universal industry standard. Missing material is an unknown or an unmet requirement, not proof of customer harm.
+The company policy supplies the rules. The demo requires a product announcement at least 72 elapsed hours before launch. Other companies can choose local calendar days or business days with a confirmed calendar. Missing material is an unknown or an unmet requirement, not proof of customer harm.
 
 ## Would a company build it this way?
 
@@ -27,4 +29,4 @@ This choice keeps the first question small: does connecting release evidence pro
 
 ## B2C and enterprise
 
-The software accepts company rules and release evidence. The tested case is B2C. Enterprise tests would need contracts, entitlements, administrators, supported versions, account/cohort scope and customer-specific notice obligations. This repository does not claim those cases have been tested.
+The software accepts company rules and release evidence. The six-stage review case is B2C. The continuing agent also has a small enterprise planning check covering administrator notice, entitlements, supported versions and tenant rollout questions; it is not a full enterprise launch test. Contracts, account scope and customer-specific commitments still need testing on unfamiliar releases.

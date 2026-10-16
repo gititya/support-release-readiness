@@ -22,3 +22,6 @@ env/
 /acceptance-controls/
 /evidence/
 /docs/PUBLIC_README.md
+/dist/
+/agent/workspace/
+/agent/requests/
