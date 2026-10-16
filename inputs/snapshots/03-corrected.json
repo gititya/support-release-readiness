@@ -1,0 +1,25 @@
+{
+  "release_id": "RR-001",
+  "snapshot_id": "03-corrected",
+  "as_of_utc": "2026-10-15T12:00:00Z",
+  "synthetic": true,
+  "instructions": "Review support readiness at this as-of time using only these files and earlier review outputs from the same lifecycle sequence. Cite evidence, separate facts from inference and unknowns, and propose human actions. No external actions.",
+  "files": [
+    {
+      "path": "inputs/company-rules.md",
+      "sha256": "6a984652563f74c426466d85040d48972d83dee51c12d0c71d605df11219eeda"
+    },
+    {
+      "path": "inputs/product-v2.md",
+      "sha256": "4b51b5996a035b36897af6957fd7f374fbab22ade3bc7815accf9687f3025f76"
+    },
+    {
+      "path": "inputs/help-training-v2.md",
+      "sha256": "391b94d1228be17880841069a83e8d210d5f87b4b784325ffbc515d471220229"
+    },
+    {
+      "path": "inputs/operations-corrected.md",
+      "sha256": "eeea80a476ebcc81070e6f498d7cd3c7295481687683dbb30a1f3e27841c939f"
+    }
+  ]
+}

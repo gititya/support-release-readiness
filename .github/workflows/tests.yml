@@ -1,0 +1,15 @@
+name: Software checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4, verified 2026-10-12
+        with:
+          persist-credentials: false
+      - name: Verify Python and run offline tests
+        run: |
+          python3 -c "import sys; assert sys.version_info >= (3, 11)"
+          python3 -m unittest discover -s tests -v

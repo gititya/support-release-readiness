@@ -1,0 +1,319 @@
+{
+  "release_id": "RR-001",
+  "snapshot_id": "06-follow-up",
+  "as_of_utc": "2026-10-22T12:00:00Z",
+  "synthetic": true,
+  "manifest_sha256": "a09c0bf05b936e84f5c083cbb58fdc92e55972180400cc903fd175db09b6f34c",
+  "hashes": {
+    "inputs/company-rules.md": "6a984652563f74c426466d85040d48972d83dee51c12d0c71d605df11219eeda",
+    "inputs/product-v2.md": "4b51b5996a035b36897af6957fd7f374fbab22ade3bc7815accf9687f3025f76",
+    "inputs/product-v3.md": "0d5adae896290dbfebad9038093c0a4be8d08dc2371f4fd8c4e48a4c341a7d97",
+    "inputs/launch-preparation-v3.md": "8d4ed61e1568b51e60a386684947b0a3d396afc443e62940c2b5d4ef469d69ba",
+    "inputs/post-launch-follow-up.md": "0406c515fcd3be87057dae7c27b2492294bc889eba5e5a7d4c5d1b12eaa8c272"
+  },
+  "variant": "agent",
+  "sequence_id": "publication-repairs",
+  "report": {
+    "phase_recommendation": "follow-up incomplete",
+    "summary": "As of 2026-10-22 12:00 UTC, RR-001 is in post-launch incident follow-up. The authorized 2,000-account v3 rollout is paused: Mira recommended the pause, Jo authorized it and Dev executed it. Sam confirmed two settled captures after confirmed cancellations, and Dev identified BUG-31. Build 3.1 deployed and passed a simulated regression check, but deployment does not confirm customer recovery or authorize resumption. C-101 confirmed the refund and cancellation state, and Mira delivered that outcome to product and engineering. C-102 has not replied, so follow-up remains incomplete. The pending resumption decision is a separate authority state, not a new readiness defect.",
+    "findings": [
+      {
+        "id": "RR-001-FUP-001",
+        "severity": "major",
+        "basis": "fact",
+        "finding": "Affected-customer follow-up remains incomplete for C-102. Its refund was processed and product and engineering received an update, but the customer has not confirmed receipt or account outcome; the support case remains open.",
+        "customer_consequence": "C-102 may remain uncertain whether the refund reached them and whether renewal remains disabled.",
+        "owner": "Nia and Mira",
+        "proposed_action": "Nia should perform the recorded follow-up on 2026-10-23 12:00 UTC and record C-102's response or continued non-response. Mira should deliver any confirmed outcome to product and engineering and close the case only when the supplied follow-up requirements are met.",
+        "evidence": [
+          {
+            "file": "inputs/company-rules.md",
+            "quote": "For a defect, record engineering status, deployment evidence, affected customers and their responses separately. Do not mark customer impact resolved solely because a fix deployed or a ticket was marked duplicate. Mira can close the feedback loop after each affected customer's outcome is confirmed, or explicitly document an unresolved customer and follow-up owner."
+          },
+          {
+            "file": "inputs/post-launch-follow-up.md",
+            "quote": "Sam approved $49 refunds for both affected accounts after reviewing their captures. Ledger records RF-101 and RF-102 show processing completed Oct 21, 10:00 UTC. These records do not prove each customer has seen the returned funds."
+          },
+          {
+            "file": "inputs/post-launch-follow-up.md",
+            "quote": "C-102 has not replied. Support case C-102 remains open. Nia owns another follow-up on Oct 23 at 12:00 UTC. Mira's product/engineering update FEED-102 at Oct 22, 10:00 UTC says the fix deployed and refund processed, but customer confirmation is outstanding. Do not call both customers resolved."
+          }
+        ]
+      }
+    ],
+    "observations": [
+      {
+        "statement": "The current phase is post-launch incident follow-up for product v3. New exposure is stopped at 2,000 accounts, while already exposed accounts remain on v3.",
+        "evidence": [
+          {
+            "file": "inputs/post-launch-follow-up.md",
+            "quote": "Recorded: 2026-10-22 11:00 UTC. Owners: Dev, Sam and Mira. Current product: v3."
+          },
+          {
+            "file": "inputs/post-launch-follow-up.md",
+            "quote": "Mira recommended pause Oct 20, 11:12 UTC. Jo authorized it at 11:15, PAUSE-3. Dev executed it at 11:18, FLAG-3. New exposure stopped at 2,000 accounts; existing exposed accounts remained on v3. The pause did not reverse charges."
+          }
+        ]
+      },
+      {
+        "statement": "Pause recommendation, authorization and execution are separately evidenced: Mira recommended the pause at 11:12 UTC, Jo authorized it at 11:15 and Dev executed it at 11:18. The pause did not reverse charges.",
+        "evidence": [
+          {
+            "file": "inputs/company-rules.md",
+            "quote": "Product lead Jo approves customer behavior. Billing lead Sam approves refund and billing guidance. Engineering lead Dev supplies technical tests and fixes. Support readiness lead Mira recommends support readiness and rollout pauses. Release owner Jo authorizes launches and pauses. Engineering on-call Dev executes rollout changes. Vendor manager Lee confirms staffing and vendor access. Training owner Nia confirms training coverage; content owner Ren owns public and internal help; support operations owner Alex owns CRM and routing."
+          },
+          {
+            "file": "inputs/company-rules.md",
+            "quote": "The agent can recommend and prepare an escalation draft. It cannot authorize or execute a pause. A pause stops new exposure; it does not roll back a deployed fix or repair already affected accounts."
+          },
+          {
+            "file": "inputs/post-launch-follow-up.md",
+            "quote": "Mira recommended pause Oct 20, 11:12 UTC. Jo authorized it at 11:15, PAUSE-3. Dev executed it at 11:18, FLAG-3. New exposure stopped at 2,000 accounts; existing exposed accounts remained on v3. The pause did not reverse charges."
+          }
+        ]
+      },
+      {
+        "statement": "Sam's review confirmed settled captures for C-101 and C-102. The other six post-cancellation-charge contacts were individually confirmed as display-only discrepancies and resolved using KB-17. BUG-31 is a cancellation/renewal race condition distinct from KI-17, and closing BUG-32 as a duplicate did not resolve customer impact.",
+        "evidence": [
+          {
+            "file": "inputs/post-launch-follow-up.md",
+            "quote": "Sam's billing review at Oct 20, 13:00 UTC found settled captures for C-101 and C-102 despite confirmed cancellations. Six other post-cancellation-charge contacts were display-only discrepancies, confirmed individually and resolved with KB-17 guidance. Dev identified a cancellation/renewal race condition, BUG-31, distinct from the known display delay KI-17. C-102's linked engineering issue BUG-32 was closed as a duplicate of BUG-31; that closure is not a separate fix or customer resolution."
+          }
+        ]
+      },
+      {
+        "statement": "Build 3.1 deployed on 2026-10-21 09:00 UTC, and T-31 found no new capture in a simulated repeat of the timing sequence. This is deployment and simulated-test evidence, not proof of customer recovery or permission to resume the rollout.",
+        "evidence": [
+          {
+            "file": "inputs/company-rules.md",
+            "quote": "Product documents define approved intended behavior. Test records are evidence of simulated checks, not proof of every possible outcome. A help article or training slide cannot override approved behavior. If a later approved change affects guidance, review that guidance again. Earlier records remain historical evidence. Plans and drafts are not completed actions; an owner name is not an approval."
+          },
+          {
+            "file": "inputs/company-rules.md",
+            "quote": "For a defect, record engineering status, deployment evidence, affected customers and their responses separately. Do not mark customer impact resolved solely because a fix deployed or a ticket was marked duplicate. Mira can close the feedback loop after each affected customer's outcome is confirmed, or explicitly document an unresolved customer and follow-up owner."
+          },
+          {
+            "file": "inputs/post-launch-follow-up.md",
+            "quote": "Fix build 3.1 deployed Oct 21, 09:00 UTC, DEP-31. Test T-31 repeats the timing sequence and confirms no new capture in the simulated regression check. Engineering marks BUG-31 fixed. The rollout remains paused pending Jo's further authorization; deployment is not an approval to resume."
+          }
+        ]
+      },
+      {
+        "statement": "Sam approved $49 refunds for both settled captures, and ledger records show processing completed. Those records alone do not prove that either customer saw returned funds.",
+        "evidence": [
+          {
+            "file": "inputs/post-launch-follow-up.md",
+            "quote": "Sam approved $49 refunds for both affected accounts after reviewing their captures. Ledger records RF-101 and RF-102 show processing completed Oct 21, 10:00 UTC. These records do not prove each customer has seen the returned funds."
+          }
+        ]
+      },
+      {
+        "statement": "C-101 confirmed seeing the refund and that renewal remained off. Support closed the case after that response, and Mira delivered the confirmed outcome to Jo and Dev.",
+        "evidence": [
+          {
+            "file": "inputs/post-launch-follow-up.md",
+            "quote": "Agent Nia contacted C-101 and C-102 Oct 21, 12:00 UTC. C-101 replied Oct 22, 09:00 UTC: \u201cI can see the refund and the account still says renewal is off. That sorts it, thanks.\u201d Support case C-101 closed after this response, and Mira sent the confirmed outcome to Jo and Dev at 09:30 UTC, FEED-101."
+          }
+        ]
+      },
+      {
+        "statement": "The last supplied preparation record retains current v3 help, training and safe billing escalation, as well as the prior CRM, routing and staffing acceptance. The incident evidence does not show that these completed support controls were undone.",
+        "evidence": [
+          {
+            "file": "inputs/launch-preparation-v3.md",
+            "quote": "S3 help and training, approved by Ren and Nia Oct 17, 08:00 UTC: Manage Plan \u2192 Cancel subscription \u2192 review \u2192 Turn off renewal \u2192 await billing acknowledgement. Paid access continues to term end. The cohort receives a mandatory billing notice three days before renewal, even with the old reminder toggle off; marketing preferences remain separate. Refunds require Sam's review. Sam approved KB-17's unchanged safe billing-escalation guidance and Jo reaffirmed the limited-cohort acceptance Oct 17."
+          },
+          {
+            "file": "inputs/launch-preparation-v3.md",
+            "quote": "PUB-3 Oct 17, 08:30 UTC confirms public S3 content published to the cohort. TR-3 Oct 18 covers all INT-2 and VND-2 agents; all passed the updated button/notice exercise and can open S3 and KB-17. Lee acknowledges vendor coverage and access Oct 18, 11:30 UTC. The S2 content is retained as history and is not used for this cohort."
+          },
+          {
+            "file": "inputs/launch-preparation-v3.md",
+            "quote": "Alex confirmed C-13 reason/form tests and R-11 routing still apply: v3 changes no contact reason, form field or routing. No new telephony work needed. Lee reconfirmed CAP-2 and the same named first-hour staffing roster for Oct 20. Reserve plus additional coverage remains 10 agent-hours; assumptions and queue-wait uncertainty unchanged."
+          },
+          {
+            "file": "inputs/post-launch-follow-up.md",
+            "quote": "Recorded: 2026-10-22 11:00 UTC. Owners: Dev, Sam and Mira. Current product: v3."
+          }
+        ]
+      },
+      {
+        "statement": "The rollout remains paused pending Jo's further authorization. Whether Jo will accept BUG-31's post-fix state for further exposure and authorize resumption is a pending human authority decision, not evidence that resumption occurred.",
+        "evidence": [
+          {
+            "file": "inputs/company-rules.md",
+            "quote": "Product lead Jo approves customer behavior. Billing lead Sam approves refund and billing guidance. Engineering lead Dev supplies technical tests and fixes. Support readiness lead Mira recommends support readiness and rollout pauses. Release owner Jo authorizes launches and pauses. Engineering on-call Dev executes rollout changes. Vendor manager Lee confirms staffing and vendor access. Training owner Nia confirms training coverage; content owner Ren owns public and internal help; support operations owner Alex owns CRM and routing."
+          },
+          {
+            "file": "inputs/company-rules.md",
+            "quote": "Cancellation and billing guidance must match the approved flow. Public content must be published for the exposed cohort. Every known billing issue needs safe guidance, an escalation route and the product owner's acceptance before exposure. Support launch readiness is not ready if this evidence is missing or contradicts the current behavior."
+          },
+          {
+            "file": "inputs/post-launch-follow-up.md",
+            "quote": "Fix build 3.1 deployed Oct 21, 09:00 UTC, DEP-31. Test T-31 repeats the timing sequence and confirms no new capture in the simulated regression check. Engineering marks BUG-31 fixed. The rollout remains paused pending Jo's further authorization; deployment is not an approval to resume."
+          }
+        ]
+      }
+    ],
+    "transitions": [
+      {
+        "prior_id": "RR-001-ROL-001",
+        "state": "resolved",
+        "reason": "The rollout-control action is complete: Mira recommended a pause, Jo authorized it and Dev stopped new exposure. This resolves the prior pause-action finding but does not resolve the defect or affected-customer outcomes.",
+        "evidence": [
+          {
+            "file": "inputs/company-rules.md",
+            "quote": "The agent can recommend and prepare an escalation draft. It cannot authorize or execute a pause. A pause stops new exposure; it does not roll back a deployed fix or repair already affected accounts."
+          },
+          {
+            "file": "inputs/post-launch-follow-up.md",
+            "quote": "Mira recommended pause Oct 20, 11:12 UTC. Jo authorized it at 11:15, PAUSE-3. Dev executed it at 11:18, FLAG-3. New exposure stopped at 2,000 accounts; existing exposed accounts remained on v3. The pause did not reverse charges."
+          }
+        ]
+      },
+      {
+        "prior_id": "RR-001-FUP-001",
+        "state": "open",
+        "reason": "Billing review and refund processing are complete for both settled captures, and C-101 confirmed recovery. C-102 has not replied, its case remains open and customer confirmation is outstanding.",
+        "evidence": [
+          {
+            "file": "inputs/company-rules.md",
+            "quote": "For a defect, record engineering status, deployment evidence, affected customers and their responses separately. Do not mark customer impact resolved solely because a fix deployed or a ticket was marked duplicate. Mira can close the feedback loop after each affected customer's outcome is confirmed, or explicitly document an unresolved customer and follow-up owner."
+          },
+          {
+            "file": "inputs/post-launch-follow-up.md",
+            "quote": "Sam approved $49 refunds for both affected accounts after reviewing their captures. Ledger records RF-101 and RF-102 show processing completed Oct 21, 10:00 UTC. These records do not prove each customer has seen the returned funds."
+          },
+          {
+            "file": "inputs/post-launch-follow-up.md",
+            "quote": "Agent Nia contacted C-101 and C-102 Oct 21, 12:00 UTC. C-101 replied Oct 22, 09:00 UTC: \u201cI can see the refund and the account still says renewal is off. That sorts it, thanks.\u201d Support case C-101 closed after this response, and Mira sent the confirmed outcome to Jo and Dev at 09:30 UTC, FEED-101."
+          },
+          {
+            "file": "inputs/post-launch-follow-up.md",
+            "quote": "C-102 has not replied. Support case C-102 remains open. Nia owns another follow-up on Oct 23 at 12:00 UTC. Mira's product/engineering update FEED-102 at Oct 22, 10:00 UTC says the fix deployed and refund processed, but customer confirmation is outstanding. Do not call both customers resolved."
+          }
+        ]
+      }
+    ],
+    "calculations": [
+      {
+        "name": "Current internal announcement deadline",
+        "value": "2026-10-20 10:00 UTC minus 72 hours = 2026-10-17 10:00 UTC.",
+        "evidence": [
+          {
+            "file": "inputs/company-rules.md",
+            "quote": "Product must send the internal announcement at least 72 hours before launch, naming the behavior revision and audience. Mira adapts it into a support notice. Internal and vendor agents need the current notice, training, internal guidance and access before serving exposed customers. Sending and acknowledgement are distinct. Vendor coverage requires a roster and a named lead's acknowledgement, including acknowledgement of late notice changes."
+          },
+          {
+            "file": "inputs/launch-preparation-v3.md",
+            "quote": "Jo moved launch to Oct 20, 10:00 UTC on Oct 15, 18:30 UTC. ANN-4 v3 product announcement sent Oct 17, 09:00 UTC; receipt MAIL-ANN-4 confirms product, engineering and internal support leads. SUP-4 v3 support notice sent Oct 17, 12:00 UTC to internal and vendor support; receipt MAIL-SUP-4 covers both. Vendor lead Lee acknowledged the revised notice and complete roster coverage Oct 18, 11:30 UTC."
+          }
+        ]
+      },
+      {
+        "name": "ANN-4 send lead and lateness",
+        "value": "From 2026-10-17 09:00 UTC to 2026-10-20 10:00 UTC = 73 hours of lead. ANN-4 was sent 1 hour before the deadline, with 0 hours of lateness.",
+        "evidence": [
+          {
+            "file": "inputs/company-rules.md",
+            "quote": "Product must send the internal announcement at least 72 hours before launch, naming the behavior revision and audience. Mira adapts it into a support notice. Internal and vendor agents need the current notice, training, internal guidance and access before serving exposed customers. Sending and acknowledgement are distinct. Vendor coverage requires a roster and a named lead's acknowledgement, including acknowledgement of late notice changes."
+          },
+          {
+            "file": "inputs/launch-preparation-v3.md",
+            "quote": "Jo moved launch to Oct 20, 10:00 UTC on Oct 15, 18:30 UTC. ANN-4 v3 product announcement sent Oct 17, 09:00 UTC; receipt MAIL-ANN-4 confirms product, engineering and internal support leads. SUP-4 v3 support notice sent Oct 17, 12:00 UTC to internal and vendor support; receipt MAIL-SUP-4 covers both. Vendor lead Lee acknowledged the revised notice and complete roster coverage Oct 18, 11:30 UTC."
+          }
+        ]
+      },
+      {
+        "name": "Support-notice and vendor-acknowledgement lead",
+        "value": "SUP-4 was sent 70 hours before exposure. Lee acknowledged the revised notice 46 hours 30 minutes before exposure.",
+        "evidence": [
+          {
+            "file": "inputs/company-rules.md",
+            "quote": "Product must send the internal announcement at least 72 hours before launch, naming the behavior revision and audience. Mira adapts it into a support notice. Internal and vendor agents need the current notice, training, internal guidance and access before serving exposed customers. Sending and acknowledgement are distinct. Vendor coverage requires a roster and a named lead's acknowledgement, including acknowledgement of late notice changes."
+          },
+          {
+            "file": "inputs/launch-preparation-v3.md",
+            "quote": "Jo moved launch to Oct 20, 10:00 UTC on Oct 15, 18:30 UTC. ANN-4 v3 product announcement sent Oct 17, 09:00 UTC; receipt MAIL-ANN-4 confirms product, engineering and internal support leads. SUP-4 v3 support notice sent Oct 17, 12:00 UTC to internal and vendor support; receipt MAIL-SUP-4 covers both. Vendor lead Lee acknowledged the revised notice and complete roster coverage Oct 18, 11:30 UTC."
+          }
+        ]
+      },
+      {
+        "name": "Recorded staffing coverage",
+        "value": "Reserve plus additional coverage = 10 agent-hours. The current source passages do not restate the contact-volume and AHT quantities needed to reproduce the handling-load multiplication; those quantities are therefore not independently verified in this snapshot.",
+        "evidence": [
+          {
+            "file": "inputs/company-rules.md",
+            "quote": "CRM contact reasons must be available on internal and vendor case forms, with old reasons mapped to new ones. Staffing requires stated volume assumptions, an AHT assumption (average handling time), reserve coverage and vendor acceptance. A planning estimate is not a demand forecast. If no infrastructure changes are needed, an owner can record a scoped no-change assessment rather than inventing work."
+          },
+          {
+            "file": "inputs/launch-preparation-v3.md",
+            "quote": "Alex confirmed C-13 reason/form tests and R-11 routing still apply: v3 changes no contact reason, form field or routing. No new telephony work needed. Lee reconfirmed CAP-2 and the same named first-hour staffing roster for Oct 20. Reserve plus additional coverage remains 10 agent-hours; assumptions and queue-wait uncertainty unchanged."
+          }
+        ]
+      },
+      {
+        "name": "Pause authority timing",
+        "value": "Recommendation to authorization = 3 minutes; authorization to execution = 3 minutes; recommendation to execution = 6 minutes.",
+        "evidence": [
+          {
+            "file": "inputs/post-launch-follow-up.md",
+            "quote": "Mira recommended pause Oct 20, 11:12 UTC. Jo authorized it at 11:15, PAUSE-3. Dev executed it at 11:18, FLAG-3. New exposure stopped at 2,000 accounts; existing exposed accounts remained on v3. The pause did not reverse charges."
+          }
+        ]
+      },
+      {
+        "name": "Equal-window contact rates, absolute increase and ratio",
+        "value": "Not verified from the current source passages: they record the completed pause but do not supply the baseline and rollout contact counts needed to reproduce the equal-window rates, absolute increase or ratio.",
+        "evidence": [
+          {
+            "file": "inputs/company-rules.md",
+            "quote": "The first hour is limited to 2,000 exposed accounts. Compare contact rates per 1,000 exposed accounts over equal one-hour windows. Recommend a pause if the rate is at least twice the baseline, or if two separate customers have matching reports of an unexpected charge after confirmed cancellation. These are conservative fictional policy thresholds, not proof of statistical significance or causality."
+          },
+          {
+            "file": "inputs/post-launch-follow-up.md",
+            "quote": "Mira recommended pause Oct 20, 11:12 UTC. Jo authorized it at 11:15, PAUSE-3. Dev executed it at 11:18, FLAG-3. New exposure stopped at 2,000 accounts; existing exposed accounts remained on v3. The pause did not reverse charges."
+          }
+        ]
+      },
+      {
+        "name": "Processed refund amount",
+        "value": "2 affected accounts \u00d7 $49 = $98 in processed refunds. Processing records do not prove customer receipt.",
+        "evidence": [
+          {
+            "file": "inputs/post-launch-follow-up.md",
+            "quote": "Sam approved $49 refunds for both affected accounts after reviewing their captures. Ledger records RF-101 and RF-102 show processing completed Oct 21, 10:00 UTC. These records do not prove each customer has seen the returned funds."
+          }
+        ]
+      }
+    ],
+    "unknowns": [
+      "Whether C-102 has received or seen the returned funds is not verified.",
+      "Whether C-102's account still shows renewal disabled is not verified.",
+      "The result of Nia's planned 2026-10-23 12:00 UTC follow-up is not supplied.",
+      "Observed post-fix production behavior is not supplied; T-31 is a simulated regression check.",
+      "Jo's acceptance of BUG-31's post-fix state for any further exposure is not supplied.",
+      "No resumption authorization or execution is supplied, and wider exposure remains unauthorized.",
+      "Current-source baseline and rollout contact counts, equal-window rates, absolute increase and ratio are not supplied.",
+      "Actual queue age, wait time and staffing utilization during the rollout are not supplied."
+    ]
+  },
+  "settings": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "variant": "agent",
+    "prompt_sha256": "bb34e1c5fa03f20b74d5472eef407b7723da0df593150ffa64edc7ec73829cea",
+    "schema_sha256": "2697bd1af902327ee72a2bd87db2a8a7c9e5f5004d705a50a17781a5f9c3c6b2",
+    "max_calls": 2,
+    "timeout_per_call_seconds": 300,
+    "runner": "installed Codex CLI",
+    "source_boundary": "Only allowlisted content is passed inline; task filesystem access restricted to minimal runtime paths and temporary schema directory. Shell, browser, connectors, plugins and memory disabled; native tool events reject a report."
+  },
+  "calculation_provenance": {
+    "tool": "readiness.evidence.signal_checks",
+    "appended": []
+  },
+  "validated_at": "2026-10-12T18:33:16.045545+00:00",
+  "validation_retries": 0,
+  "validation_limit": "Citation existence and output shape verified. Semantic truth still requires review."
+}

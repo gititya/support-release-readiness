@@ -1,0 +1,9 @@
+{
+  "recorded_at": "2026-10-20T11:05:00Z",
+  "synthetic": true,
+  "cases": [
+    {"id": "C-101", "received_at": "2026-10-20T10:40:00Z", "utterance": "It said my renewal was turned off, but I can see a new $49 charge. Can you check what happened?", "support_record": "Cancellation acknowledgement CAN-101 at 10:15 UTC. Invoice shows a $49 entry at 10:30. Capture status not yet reviewed by billing.", "contact_reason": "post_cancel_charge", "status": "billing review requested"},
+    {"id": "C-102", "received_at": "2026-10-20T10:50:00Z", "utterance": "I turned it off and got the confirmation. Why is there another $49 on my account?", "support_record": "Cancellation acknowledgement CAN-102 at 10:20 UTC. Invoice shows a $49 entry at 10:35. Capture status not yet reviewed by billing.", "contact_reason": "post_cancel_charge", "status": "billing review requested"}
+  ],
+  "operator_note": "Mira has not recommended a pause yet. Jo has not authorized a pause and Dev has not executed one at this as-of time. All 52 contacts are counted once in the CSV. The two cases are included in its eight post-cancellation-charge contacts."
+}

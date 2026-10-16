@@ -1,0 +1,500 @@
+{
+  "status": "source-based implementing-agent review; Adi retains product judgment",
+  "automatic_artifact_hashes": {
+    "summary.json": "5ff38944eb633b82f06873fefa18bddde72d28156d06856946e69341a188b9ce",
+    "results.csv": "dcb0f16790ea567b2f48182089e510c32fb53d43eda839e95d76d7f748690059",
+    "scoring/sequence-1/agent/judgment.json": "a6807f5b2bebf8adb7b6c75c7d63c357ae925ae984b05e9b79dce62a4ed4486e",
+    "scoring/sequence-1/control/judgment.json": "2676c54b5243b44d159eb632491ec569b184dffae9f604b36c1ff765b17ffdab",
+    "scoring/sequence-2/agent/judgment.json": "f858f79f33ef7c966c5cb20f7db1a60b78214d517b54541096d9ee3521fd748e",
+    "scoring/sequence-2/control/judgment.json": "276e24a313f0dc39002e17227b426d8ae5e72eda59f527bc4a1b906c0ec16735"
+  },
+  "unchanged": "All finding recall, phase, calculation and distinction pass/fail results remain unchanged. Only unsupported-claim/block classifications are adjusted.",
+  "changes": [
+    {
+      "sequence": "sequence-1",
+      "variant": "agent",
+      "snapshot": "01-planning",
+      "kind": "unsupported_claim",
+      "original": {
+        "reason": "The review invents an as-of time of 2026-10-09T12:00:00Z for its 94-hour calculation. No supplied record establishes that snapshot time.",
+        "invented_completion_or_authority": false,
+        "report_reference": "/accepted/calculations/1/value",
+        "report_quote": "94 hours remained as of 2026-10-09T12:00:00Z. No send timestamp is supplied, so actual send lead and lateness are not verified."
+      },
+      "decision": "supported; remove from unsupported claims",
+      "reason": "The validated manifest and saved review bundle provide this exact as-of time. The original evaluator payload omitted manifest metadata. The 94-hour difference to Oct 13 10:00 UTC is correct.",
+      "evidence": [
+        "inputs/snapshots/01-planning.json",
+        "evidence/comparison-2026-10-11-v1/runs/sequence-1/agent/01-planning/bundle.json"
+      ]
+    },
+    {
+      "sequence": "sequence-1",
+      "variant": "control",
+      "snapshot": "01-planning",
+      "kind": "unsupported_block",
+      "original": {
+        "reason": "The phase recommendation turns an early discovery meeting into a support-readiness gate, contrary to the expected 'continue discovery' recommendation.",
+        "report_reference": "/accepted/phase_recommendation",
+        "report_quote": "support not ready"
+      },
+      "decision": "confirmed",
+      "reason": "The planning record explicitly says final training and staffing are not due; this report labels their absence as current major findings or returns the wrong phase.",
+      "evidence": [
+        "inputs/planning-notes.md"
+      ]
+    },
+    {
+      "sequence": "sequence-1",
+      "variant": "control",
+      "snapshot": "01-planning",
+      "kind": "unsupported_block",
+      "original": {
+        "reason": "The report requires implementation-level technical verification while the behavior is still a proposal awaiting Jo's decision.",
+        "report_reference": "/accepted/findings/1/finding",
+        "report_quote": "Technical verification that the success state appears only after billing acknowledgement is not supplied. The planning record describes the requirement as awaiting Jo's confirmation, and no test record is included."
+      },
+      "decision": "not confirmed as a block",
+      "reason": "Not established as a mandatory launch block. The report describes an unverified area and proposes technical tests, monitoring, future preparation or a capacity response. Such extra owner proposals can be useful; absence from the required-finding key alone does not make them false alarms. Do not count this as a confirmed unsupported block.",
+      "evidence": [
+        "EXPERIMENT.md section 5",
+        "evidence/comparison-2026-10-11-v1/runs/sequence-1/control/01-planning/report.json",
+        "inputs/company-rules.md"
+      ]
+    },
+    {
+      "sequence": "sequence-1",
+      "variant": "control",
+      "snapshot": "01-planning",
+      "kind": "unsupported_block",
+      "original": {
+        "reason": "The report labels absent final training and published help as a planning-stage failure despite the explicit statement that final training was not expected at this meeting.",
+        "report_reference": "/accepted/findings/3/finding",
+        "report_quote": "Completed training, current internal guidance, and published public help for the exposed cohort are not verified. The only supplied evidence assigns future planning and revision work."
+      },
+      "decision": "confirmed",
+      "reason": "The planning record explicitly says final training and staffing are not due; this report labels their absence as current major findings or returns the wrong phase.",
+      "evidence": [
+        "inputs/planning-notes.md"
+      ]
+    },
+    {
+      "sequence": "sequence-1",
+      "variant": "control",
+      "snapshot": "01-planning",
+      "kind": "unsupported_block",
+      "original": {
+        "reason": "The report labels absent staffing commitment and vendor coverage as a planning-stage failure despite the explicit phase exception.",
+        "report_reference": "/accepted/findings/4/finding",
+        "report_quote": "Staffing readiness and vendor coverage are not verified. There are no stated contact-volume or AHT assumptions, reserve calculation, accepted roster, named vendor-lead acknowledgement, or verified agent access."
+      },
+      "decision": "confirmed",
+      "reason": "The planning record explicitly says final training and staffing are not due; this report labels their absence as current major findings or returns the wrong phase.",
+      "evidence": [
+        "inputs/planning-notes.md"
+      ]
+    },
+    {
+      "sequence": "sequence-1",
+      "variant": "control",
+      "snapshot": "01-planning",
+      "kind": "unsupported_block",
+      "original": {
+        "reason": "The report turns Alex's future assessment work into a current CRM deployment failure during discovery.",
+        "report_reference": "/accepted/findings/5/finding",
+        "report_quote": "CRM contact categories and routing are not verified on internal or vendor forms. The supplied record only says Alex will assess mappings and access."
+      },
+      "decision": "not confirmed as a block",
+      "reason": "Not established as a mandatory launch block. The report describes an unverified area and proposes technical tests, monitoring, future preparation or a capacity response. Such extra owner proposals can be useful; absence from the required-finding key alone does not make them false alarms. Do not count this as a confirmed unsupported block.",
+      "evidence": [
+        "EXPERIMENT.md section 5",
+        "evidence/comparison-2026-10-11-v1/runs/sequence-1/control/01-planning/report.json",
+        "inputs/company-rules.md"
+      ]
+    },
+    {
+      "sequence": "sequence-1",
+      "variant": "control",
+      "snapshot": "01-planning",
+      "kind": "unsupported_block",
+      "original": {
+        "reason": "The report treats unsent launch communications as a current failure even though the calculated announcement deadline was still 94 hours away.",
+        "report_reference": "/accepted/findings/6/finding",
+        "report_quote": "The internal product announcement, adapted support notice, send receipt, and internal or vendor acknowledgements are not verified. The required announcement deadline is 2026-10-13T10:00:00Z."
+      },
+      "decision": "not confirmed as a block",
+      "reason": "Not established as a mandatory launch block. The report describes an unverified area and proposes technical tests, monitoring, future preparation or a capacity response. Such extra owner proposals can be useful; absence from the required-finding key alone does not make them false alarms. Do not count this as a confirmed unsupported block.",
+      "evidence": [
+        "EXPERIMENT.md section 5",
+        "evidence/comparison-2026-10-11-v1/runs/sequence-1/control/01-planning/report.json",
+        "inputs/company-rules.md"
+      ]
+    },
+    {
+      "sequence": "sequence-1",
+      "variant": "control",
+      "snapshot": "01-planning",
+      "kind": "unsupported_block",
+      "original": {
+        "reason": "The report adds a release-specific monitoring and customer-ledger preparation block that was not due at this planning meeting.",
+        "report_reference": "/accepted/findings/7/finding",
+        "report_quote": "A release-specific monitoring, escalation, and customer follow-up operation is not verified. Policy supplies the exposure cap, rate comparison, pause thresholds, authority boundaries, and closure standard, but no baseline counts, live-window procedure, escalation draft, case ledger, or named follow-up workflow is supplied."
+      },
+      "decision": "not confirmed as a block",
+      "reason": "Not established as a mandatory launch block. The report describes an unverified area and proposes technical tests, monitoring, future preparation or a capacity response. Such extra owner proposals can be useful; absence from the required-finding key alone does not make them false alarms. Do not count this as a confirmed unsupported block.",
+      "evidence": [
+        "EXPERIMENT.md section 5",
+        "evidence/comparison-2026-10-11-v1/runs/sequence-1/control/01-planning/report.json",
+        "inputs/company-rules.md"
+      ]
+    },
+    {
+      "sequence": "sequence-1",
+      "variant": "control",
+      "snapshot": "02-prelaunch",
+      "kind": "unsupported_block",
+      "original": {
+        "reason": "The report adds complete end-to-end technical testing as a prelaunch blocker, although the declared readiness requirements do not make that additional test package a required finding.",
+        "report_reference": "/accepted/findings/0/finding",
+        "report_quote": "No supplied technical test verifies that the approved v2 cancellation flow shows completion only after billing acknowledgement or stops future renewals after confirmed cancellation. T-17 is limited to a simulated stale-date display issue and does not validate the full approved flow or any specific charge."
+      },
+      "decision": "not confirmed as a block",
+      "reason": "Not established as a mandatory launch block. The report describes an unverified area and proposes technical tests, monitoring, future preparation or a capacity response. Such extra owner proposals can be useful; absence from the required-finding key alone does not make them false alarms. Do not count this as a confirmed unsupported block.",
+      "evidence": [
+        "EXPERIMENT.md section 5",
+        "evidence/comparison-2026-10-11-v1/runs/sequence-1/control/02-prelaunch/report.json",
+        "inputs/company-rules.md"
+      ]
+    },
+    {
+      "sequence": "sequence-1",
+      "variant": "control",
+      "snapshot": "02-prelaunch",
+      "kind": "unsupported_block",
+      "original": {
+        "reason": "The report adds a detailed monitoring, escalation-draft, and customer-ledger preparation block beyond the required prelaunch findings.",
+        "report_reference": "/accepted/findings/6/finding",
+        "report_quote": "A release-specific monitoring, escalation, and customer-follow-up operation is not verified. A baseline and policy thresholds now exist, but no live first-hour query, alert assignment, escalation draft, matching-customer check, or affected-customer ledger is supplied."
+      },
+      "decision": "not confirmed as a block",
+      "reason": "Not established as a mandatory launch block. The report describes an unverified area and proposes technical tests, monitoring, future preparation or a capacity response. Such extra owner proposals can be useful; absence from the required-finding key alone does not make them false alarms. Do not count this as a confirmed unsupported block.",
+      "evidence": [
+        "EXPERIMENT.md section 5",
+        "evidence/comparison-2026-10-11-v1/runs/sequence-1/control/02-prelaunch/report.json",
+        "inputs/company-rules.md"
+      ]
+    },
+    {
+      "sequence": "sequence-1",
+      "variant": "control",
+      "snapshot": "03-corrected",
+      "kind": "unsupported_block",
+      "original": {
+        "reason": "Despite the ready recommendation and complete expected preparation evidence, the report retains complete-flow technical testing as an additional pre-exposure finding.",
+        "report_reference": "/accepted/findings/0/finding",
+        "report_quote": "Technical verification of the complete approved v2 flow remains unverified. The supplied test evidence covers KI-17's simulated stale-date display issue, not confirmation timing, renewal suppression, receipt delivery, or reminder-toggle paths."
+      },
+      "decision": "not confirmed as a block",
+      "reason": "Not established as a mandatory launch block. The report describes an unverified area and proposes technical tests, monitoring, future preparation or a capacity response. Such extra owner proposals can be useful; absence from the required-finding key alone does not make them false alarms. Do not count this as a confirmed unsupported block.",
+      "evidence": [
+        "EXPERIMENT.md section 5",
+        "evidence/comparison-2026-10-11-v1/runs/sequence-1/control/03-corrected/report.json",
+        "inputs/company-rules.md"
+      ]
+    },
+    {
+      "sequence": "sequence-1",
+      "variant": "control",
+      "snapshot": "03-corrected",
+      "kind": "unsupported_block",
+      "original": {
+        "reason": "The report retains a detailed monitoring, escalation, and customer-ledger package as another unsupported readiness finding.",
+        "report_reference": "/accepted/findings/1/finding",
+        "report_quote": "A release-specific contact-rate monitoring, pause-escalation, and customer-follow-up operation is not verified. The evidence says Lee will check queue age, but it does not supply a numeric baseline in the current packet, an equal-window query, alert assignments, an escalation draft, or an affected-customer ledger."
+      },
+      "decision": "not confirmed as a block",
+      "reason": "Not established as a mandatory launch block. The report describes an unverified area and proposes technical tests, monitoring, future preparation or a capacity response. Such extra owner proposals can be useful; absence from the required-finding key alone does not make them false alarms. Do not count this as a confirmed unsupported block.",
+      "evidence": [
+        "EXPERIMENT.md section 5",
+        "evidence/comparison-2026-10-11-v1/runs/sequence-1/control/03-corrected/report.json",
+        "inputs/company-rules.md"
+      ]
+    },
+    {
+      "sequence": "sequence-1",
+      "variant": "control",
+      "snapshot": "04-late-change",
+      "kind": "unsupported_block",
+      "original": {
+        "reason": "The report adds complete end-to-end v3 technical testing as a separate readiness blocker beyond the supported late-change findings.",
+        "report_reference": "/accepted/findings/3/finding",
+        "report_quote": "T-30 verifies the new labels and notice rules, but complete technical verification of v3 remains unverified. The supplied record does not expressly test billing-acknowledgement timing, renewal suppression after confirmed cancellation, term-end access, or the full pending-to-completion path."
+      },
+      "decision": "not confirmed as a block",
+      "reason": "Not established as a mandatory launch block. The report describes an unverified area and proposes technical tests, monitoring, future preparation or a capacity response. Such extra owner proposals can be useful; absence from the required-finding key alone does not make them false alarms. Do not count this as a confirmed unsupported block.",
+      "evidence": [
+        "EXPERIMENT.md section 5",
+        "evidence/comparison-2026-10-11-v1/runs/sequence-1/control/04-late-change/report.json",
+        "inputs/company-rules.md"
+      ]
+    },
+    {
+      "sequence": "sequence-1",
+      "variant": "control",
+      "snapshot": "04-late-change",
+      "kind": "unsupported_block",
+      "original": {
+        "reason": "The report again adds a detailed monitoring, escalation, and customer-ledger preparation block not required by the late-change evidence.",
+        "report_reference": "/accepted/findings/4/finding",
+        "report_quote": "A release-specific contact-rate monitoring, pause-escalation, and customer-follow-up operation remains unverified. The packet records only a future queue-age check; it supplies no numeric baseline source, equal-window query, alert assignments, escalation draft, matching-customer check, or affected-customer ledger."
+      },
+      "decision": "not confirmed as a block",
+      "reason": "Not established as a mandatory launch block. The report describes an unverified area and proposes technical tests, monitoring, future preparation or a capacity response. Such extra owner proposals can be useful; absence from the required-finding key alone does not make them false alarms. Do not count this as a confirmed unsupported block.",
+      "evidence": [
+        "EXPERIMENT.md section 5",
+        "evidence/comparison-2026-10-11-v1/runs/sequence-1/control/04-late-change/report.json",
+        "inputs/company-rules.md"
+      ]
+    },
+    {
+      "sequence": "sequence-2",
+      "variant": "control",
+      "snapshot": "01-planning",
+      "kind": "unsupported_block",
+      "original": {
+        "reason": "This treats the phase-appropriate absence of final training as a major planning failure even though final training is expressly not due at the meeting.",
+        "report_reference": "/accepted/findings/1/finding",
+        "report_quote": "Training is only planned after flow approval; final training coverage is not established."
+      },
+      "decision": "confirmed",
+      "reason": "The planning record explicitly says final training and staffing are not due; this report labels their absence as current major findings or returns the wrong phase.",
+      "evidence": [
+        "inputs/planning-notes.md"
+      ]
+    },
+    {
+      "sequence": "sequence-2",
+      "variant": "control",
+      "snapshot": "01-planning",
+      "kind": "unsupported_block",
+      "original": {
+        "reason": "This treats planning-stage absence of final staffing evidence as a major failure despite the record saying no final staffing commitment is expected yet.",
+        "report_reference": "/accepted/findings/3/finding",
+        "report_quote": "There is no final staffing commitment in the planning record, and the supplied evidence does not establish volume assumptions, AHT, reserve coverage, a vendor roster, access, or vendor acceptance."
+      },
+      "decision": "confirmed",
+      "reason": "The planning record explicitly says final training and staffing are not due; this report labels their absence as current major findings or returns the wrong phase.",
+      "evidence": [
+        "inputs/planning-notes.md"
+      ]
+    },
+    {
+      "sequence": "sequence-2",
+      "variant": "control",
+      "snapshot": "01-planning",
+      "kind": "unsupported_block",
+      "original": {
+        "reason": "This elevates planned CRM assessment work into a present major readiness block without evidence that deployment was due in this discovery meeting.",
+        "report_reference": "/accepted/findings/4/finding",
+        "report_quote": "CRM contact reasons, old-to-new mappings, and availability on internal and vendor case forms are not verified; only an assessment is planned."
+      },
+      "decision": "not confirmed as a block",
+      "reason": "Not established as a mandatory launch block. The report describes an unverified area and proposes technical tests, monitoring, future preparation or a capacity response. Such extra owner proposals can be useful; absence from the required-finding key alone does not make them false alarms. Do not count this as a confirmed unsupported block.",
+      "evidence": [
+        "EXPERIMENT.md section 5",
+        "evidence/comparison-2026-10-11-v1/runs/sequence-2/control/01-planning/report.json",
+        "inputs/company-rules.md"
+      ]
+    },
+    {
+      "sequence": "sequence-2",
+      "variant": "control",
+      "snapshot": "01-planning",
+      "kind": "unsupported_block",
+      "original": {
+        "reason": "This elevates unsent future communications into a major planning finding even while acknowledging that the deadline has not passed.",
+        "report_reference": "/accepted/findings/5/finding",
+        "report_quote": "The internal announcement and adapted support notice are not verified as sent. The deadline has not passed at this snapshot, but completed delivery and acknowledgements remain outstanding evidence."
+      },
+      "decision": "not confirmed as a block",
+      "reason": "Not established as a mandatory launch block. The report describes an unverified area and proposes technical tests, monitoring, future preparation or a capacity response. Such extra owner proposals can be useful; absence from the required-finding key alone does not make them false alarms. Do not count this as a confirmed unsupported block.",
+      "evidence": [
+        "EXPERIMENT.md section 5",
+        "evidence/comparison-2026-10-11-v1/runs/sequence-2/control/01-planning/report.json",
+        "inputs/company-rules.md"
+      ]
+    },
+    {
+      "sequence": "sequence-2",
+      "variant": "control",
+      "snapshot": "01-planning",
+      "kind": "unsupported_block",
+      "original": {
+        "reason": "The supplied rules define rollout thresholds but do not establish a planning-phase requirement for a completed monitor, escalation draft, and operational pause path.",
+        "report_reference": "/accepted/findings/6/finding",
+        "report_quote": "Policy defines exposure and pause thresholds, but the supplied evidence does not establish equal-window monitoring, an escalation draft, or the operational path from a threshold breach to authorized action."
+      },
+      "decision": "not confirmed as a block",
+      "reason": "Not established as a mandatory launch block. The report describes an unverified area and proposes technical tests, monitoring, future preparation or a capacity response. Such extra owner proposals can be useful; absence from the required-finding key alone does not make them false alarms. Do not count this as a confirmed unsupported block.",
+      "evidence": [
+        "EXPERIMENT.md section 5",
+        "evidence/comparison-2026-10-11-v1/runs/sequence-2/control/01-planning/report.json",
+        "inputs/company-rules.md"
+      ]
+    },
+    {
+      "sequence": "sequence-2",
+      "variant": "control",
+      "snapshot": "02-prelaunch",
+      "kind": "unsupported_block",
+      "original": {
+        "reason": "The operating rules define pause thresholds and authority but do not make a completed live monitor, escalation draft, pause path, or post-launch customer register a supplied prelaunch readiness requirement.",
+        "report_reference": "/accepted/findings/6/finding",
+        "report_quote": "The policy and baseline define pause thresholds, but equal-window monitoring, an escalation draft, the operational threshold-to-authorized-pause path, and case-level customer follow-up tracking are not verified in the supplied records."
+      },
+      "decision": "not confirmed as a block",
+      "reason": "Not established as a mandatory launch block. The report describes an unverified area and proposes technical tests, monitoring, future preparation or a capacity response. Such extra owner proposals can be useful; absence from the required-finding key alone does not make them false alarms. Do not count this as a confirmed unsupported block.",
+      "evidence": [
+        "EXPERIMENT.md section 5",
+        "evidence/comparison-2026-10-11-v1/runs/sequence-2/control/02-prelaunch/report.json",
+        "inputs/company-rules.md"
+      ]
+    },
+    {
+      "sequence": "sequence-2",
+      "variant": "control",
+      "snapshot": "03-corrected",
+      "kind": "unsupported_block",
+      "original": {
+        "reason": "The supplied readiness rules do not require a pre-exposure live monitor, escalation draft, pause-operation record, or affected-customer register, so their absence does not support this major readiness block.",
+        "report_reference": "/accepted/findings/0/finding",
+        "report_quote": "The records define pause thresholds and say Lee will check queue age, but they do not verify a live equal-window monitor, alert ownership, escalation draft, operational path to an authorized pause, or affected-customer follow-up register."
+      },
+      "decision": "not confirmed as a block",
+      "reason": "Not established as a mandatory launch block. The report describes an unverified area and proposes technical tests, monitoring, future preparation or a capacity response. Such extra owner proposals can be useful; absence from the required-finding key alone does not make them false alarms. Do not count this as a confirmed unsupported block.",
+      "evidence": [
+        "EXPERIMENT.md section 5",
+        "evidence/comparison-2026-10-11-v1/runs/sequence-2/control/03-corrected/report.json",
+        "inputs/company-rules.md"
+      ]
+    },
+    {
+      "sequence": "sequence-2",
+      "variant": "control",
+      "snapshot": "03-corrected",
+      "kind": "unsupported_block",
+      "original": {
+        "reason": "The accepted staffing evidence satisfies the stated staffing rule and covers the upper planning handling load. Requiring an extra service-level margin, queue trigger, and excess-demand response adds an unsupported readiness condition.",
+        "report_reference": "/accepted/findings/1/finding",
+        "report_quote": "The committed 10 agent-hours exactly cover the upper planning load's handling time, leaving no stated service-level margin; demand and wait time remain uncertain."
+      },
+      "decision": "not confirmed as a block",
+      "reason": "Not established as a mandatory launch block. The report describes an unverified area and proposes technical tests, monitoring, future preparation or a capacity response. Such extra owner proposals can be useful; absence from the required-finding key alone does not make them false alarms. Do not count this as a confirmed unsupported block.",
+      "evidence": [
+        "EXPERIMENT.md section 5",
+        "evidence/comparison-2026-10-11-v1/runs/sequence-2/control/03-corrected/report.json",
+        "inputs/company-rules.md"
+      ]
+    },
+    {
+      "sequence": "sequence-2",
+      "variant": "control",
+      "snapshot": "04-late-change",
+      "kind": "unsupported_block",
+      "original": {
+        "reason": "The source records the existing reasons and form tests, while the hidden requirement says not to reopen CRM deployment solely because the unrelated label and reminder timing changed.",
+        "report_reference": "/accepted/findings/4/finding",
+        "report_quote": "The deployed CRM setup was prepared against v2. The evidence does not verify whether renewal_reminder remains an adequate category for v3's mandatory billing notice or whether forms and reporting were reviewed after the change."
+      },
+      "decision": "confirmed",
+      "reason": "The report reopens CRM review and retesting solely after label/notice changes, contrary to the unchanged-operations case.",
+      "evidence": [
+        "inputs/product-v3.md",
+        "inputs/operations-corrected.md",
+        "evaluation/expected-findings.json"
+      ]
+    },
+    {
+      "sequence": "sequence-2",
+      "variant": "control",
+      "snapshot": "04-late-change",
+      "kind": "unsupported_block",
+      "original": {
+        "reason": "The rules do not establish the missing live monitor, escalation draft, pause path, or follow-up register as a v3 late-change readiness requirement.",
+        "report_reference": "/accepted/findings/6/finding",
+        "report_quote": "The records still do not verify a live equal-window monitor, alert ownership, escalation draft, threshold-to-authorized-pause path, or affected-customer follow-up register."
+      },
+      "decision": "not confirmed as a block",
+      "reason": "Not established as a mandatory launch block. The report describes an unverified area and proposes technical tests, monitoring, future preparation or a capacity response. Such extra owner proposals can be useful; absence from the required-finding key alone does not make them false alarms. Do not count this as a confirmed unsupported block.",
+      "evidence": [
+        "EXPERIMENT.md section 5",
+        "evidence/comparison-2026-10-11-v1/runs/sequence-2/control/04-late-change/report.json",
+        "inputs/company-rules.md"
+      ]
+    },
+    {
+      "sequence": "sequence-2",
+      "variant": "control",
+      "snapshot": "04-late-change",
+      "kind": "unsupported_block",
+      "original": {
+        "reason": "Staffing acceptance and upper-load coverage remain recorded; reopening staffing because no extra service-level margin exists conflicts with the supplied non-finding.",
+        "report_reference": "/accepted/findings/7/finding",
+        "report_quote": "The committed 10 agent-hours exactly cover the upper planning load's handling time and leave no stated service-level margin; demand and wait time remain uncertain."
+      },
+      "decision": "not confirmed as a block",
+      "reason": "Not established as a mandatory launch block. The report describes an unverified area and proposes technical tests, monitoring, future preparation or a capacity response. Such extra owner proposals can be useful; absence from the required-finding key alone does not make them false alarms. Do not count this as a confirmed unsupported block.",
+      "evidence": [
+        "EXPERIMENT.md section 5",
+        "evidence/comparison-2026-10-11-v1/runs/sequence-2/control/04-late-change/report.json",
+        "inputs/company-rules.md"
+      ]
+    },
+    {
+      "sequence": "sequence-2",
+      "variant": "control",
+      "snapshot": "05-launch",
+      "kind": "unsupported_block",
+      "original": {
+        "reason": "The supplied launch rules do not require actual AHT, queue age, wait time, or service-level results as a separate launch finding; the accepted staffing commitment remains ten agent-hours and no service guarantee was established.",
+        "report_reference": "/accepted/findings/2/finding",
+        "report_quote": "The launch record confirms 10 agent-hours of first-hour coverage and 52 observed contacts, but actual handling load, queue age, wait time, and service level are not verified. The current source says prior assumptions remain unchanged without restating a numeric AHT, so actual handling hours cannot be calculated from current evidence alone."
+      },
+      "decision": "not confirmed as a block",
+      "reason": "Not established as a mandatory launch block. The report describes an unverified area and proposes technical tests, monitoring, future preparation or a capacity response. Such extra owner proposals can be useful; absence from the required-finding key alone does not make them false alarms. Do not count this as a confirmed unsupported block.",
+      "evidence": [
+        "EXPERIMENT.md section 5",
+        "evidence/comparison-2026-10-11-v1/runs/sequence-2/control/05-launch/report.json",
+        "inputs/company-rules.md"
+      ]
+    },
+    {
+      "sequence": "sequence-2",
+      "variant": "control",
+      "snapshot": "05-launch",
+      "kind": "distinction",
+      "index": 2,
+      "decision": "retain failed full distinction; refine reason",
+      "reason": "The report explicitly lists causality as unknown, so that part is recognized. It does not explicitly distinguish conservative counts from statistical significance, so the complete required distinction remains unfulfilled."
+    },
+    {
+      "sequence": "sequence-2",
+      "variant": "control",
+      "snapshot": "06-follow-up",
+      "kind": "unsupported_block",
+      "original": {
+        "reason": "The supplied staffing rule requires planning assumptions, reserve coverage, and vendor acceptance, all of which were recorded. Missing retrospective AHT, queue, wait-time, and service-level results do not support a separate unresolved staffing finding.",
+        "report_reference": "/accepted/findings/3/finding",
+        "report_quote": "The current evidence confirms 10 agent-hours of launch-hour coverage but does not provide actual AHT, handling hours, queue age, wait time, or service level. Staffing performance during the incident is therefore not verified."
+      },
+      "decision": "not confirmed as a block",
+      "reason": "Not established as a mandatory launch block. The report describes an unverified area and proposes technical tests, monitoring, future preparation or a capacity response. Such extra owner proposals can be useful; absence from the required-finding key alone does not make them false alarms. Do not count this as a confirmed unsupported block.",
+      "evidence": [
+        "EXPERIMENT.md section 5",
+        "evidence/comparison-2026-10-11-v1/runs/sequence-2/control/06-follow-up/report.json",
+        "inputs/company-rules.md"
+      ]
+    }
+  ],
+  "scoring_context_fix": "Verified manifest metadata was added to the future evaluator payload only after all 24 reviews and four scoring passes completed. No model calls or review outputs were changed. The actual run version remains in frozen-source/."
+}

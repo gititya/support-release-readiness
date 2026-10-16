@@ -1,0 +1,79 @@
+{
+  "status": "authored expectations; Adi review required before runs",
+  "synthetic": true,
+  "reviewer_access": "Evaluator only. Never supply this file to either review version.",
+  "severity": {
+    "critical": "Unsafe cancellation/billing guidance, a material late change incorrectly cleared, or a rollout safety trigger missed.",
+    "major": "An unresolved preparation, delivery or follow-up requirement that needs a named owner's action. Missing evidence is not proof of harm.",
+    "non_finding": "A supported exception, phase-appropriate absence or unchanged artifact that must not create an unsupported block."
+  },
+  "snapshots": [
+    {
+      "id": "01-planning",
+      "phase_recommendation": "continue discovery",
+      "required_findings": [
+        {"id": "P-1", "severity": "major", "meaning": "Reminder behavior is unresolved; Jo must decide the toggle's scope by Oct 10 before content and training are finalized.", "sources": ["inputs/planning-notes.md", "inputs/product-v1.md"]},
+        {"id": "P-2", "severity": "major", "meaning": "Guidance for conflicting cancellation and billing evidence is unresolved; Jo and Sam own the Oct 10 decision.", "sources": ["inputs/planning-notes.md"]},
+        {"id": "P-3", "severity": "major", "meaning": "Use product design to prevent contacts: success must wait for billing acknowledgement and keep the paid-access end date visible; the confirmation requirement still needs Jo's decision.", "sources": ["inputs/planning-notes.md", "inputs/product-v1.md"]}
+      ],
+      "non_findings": ["No final training, staffing or launch approval is due at this planning meeting; do not label their absence a planning failure.", "The proposed behavior is not an approved or working implementation."],
+      "calculations": {"planned_launch_utc": "2026-10-16T10:00:00Z", "announcement_deadline_utc": "2026-10-13T10:00:00Z"}
+    },
+    {
+      "id": "02-prelaunch",
+      "phase_recommendation": "support not ready",
+      "required_findings": [
+        {"id": "R-1", "severity": "critical", "meaning": "S1's one-click completion and reassurance conflict with v2's confirm-and-billing-acknowledgement flow. Ren and Nia must revise help and training; do not promise no charges from a click or refresh.", "sources": ["inputs/product-v2.md", "inputs/help-training-v1.md"]},
+        {"id": "R-2", "severity": "critical", "meaning": "KI-17 guidance lacks Sam's approval and Jo's conditional acceptance is not yet satisfied. Agents need a safe escalation path for actual charges, not a refresh guarantee.", "sources": ["inputs/product-v2.md", "inputs/help-training-v1.md", "inputs/company-rules.md"]},
+        {"id": "R-3", "severity": "major", "meaning": "Vendor training is only scheduled and has no roster or coverage evidence; Nia and Lee must confirm completion and access before service.", "sources": ["inputs/help-training-v1.md", "inputs/company-rules.md"]},
+        {"id": "R-4", "severity": "major", "meaning": "Public release help is a draft with a future publish target; Ren needs current content and a publish record before exposure.", "sources": ["inputs/help-training-v1.md"]},
+        {"id": "R-5", "severity": "major", "meaning": "New contact reasons are absent from vendor forms. An internal staging test does not complete deployment; Alex must update and test both forms.", "sources": ["inputs/operations-prelaunch.md", "inputs/company-rules.md"]},
+        {"id": "R-6", "severity": "major", "meaning": "Staffing request lacks vendor acceptance and a named roster; Lee must confirm the six additional agent-hours. Demand and queue wait remain assumptions.", "sources": ["inputs/operations-prelaunch.md"]},
+        {"id": "R-7", "severity": "major", "meaning": "The planned product announcement is one day later than the three-day deadline. As of Oct 12 the deadline has not passed; Jo must move the send time or launch.", "sources": ["inputs/operations-prelaunch.md", "inputs/product-v2.md", "inputs/company-rules.md"]},
+        {"id": "R-8", "severity": "major", "meaning": "Support notice is a draft with no sent receipt or vendor acknowledgement. Mira and Lee must confirm delivery and coverage before service.", "sources": ["inputs/operations-prelaunch.md", "inputs/company-rules.md"]}
+      ],
+      "non_findings": ["Scoped no-change telephony assessment and routing test are supplied; do not demand a new phone number or IVR change.", "The product announcement deadline has not already been breached at this snapshot's as-of time.", "No first-hour demand or waiting-time guarantee is established."],
+      "calculations": {"announcement_deadline_utc": "2026-10-13T10:00:00Z", "planned_send_lateness_hours": 24, "high_load_handling_minutes": 600, "required_handling_agent_hours": 10, "additional_handling_agent_hours": 6}
+    },
+    {
+      "id": "03-corrected",
+      "phase_recommendation": "support ready for the specified rollout",
+      "required_findings": [],
+      "required_distinctions": ["Close R-1 through R-8 using S2 and O2 evidence, without claiming the missing evidence existed in the earlier snapshot.", "Mira's readiness recommendation is recorded; Jo's launch authorization is still pending.", "Staffing covers upper planning handling load under stated assumptions; demand and service levels are not guaranteed."],
+      "non_findings": ["Current v2 cancellation and reminder guidance matches approved behavior.", "Sam-approved KI-17 guidance and Jo's limited-cohort acceptance satisfy the declared requirement; do not require zero known defects.", "Product notice sent 73 hours before launch satisfies the three-calendar-day rule.", "Internal/vendor training, help access, form tests, staffing commitment and notice evidence are supplied.", "No exposure or rollout execution has happened in this snapshot."],
+      "calculations": {"announcement_deadline_utc": "2026-10-13T10:00:00Z", "announcement_lead_hours": 73, "available_handling_agent_hours": 10},
+      "scoring_note": "Recall is not applicable when no expected risk remains. Score phase, distinctions and unsupported blocks instead."
+    },
+    {
+      "id": "04-late-change",
+      "phase_recommendation": "support not ready",
+      "required_findings": [
+        {"id": "L-1", "severity": "critical", "meaning": "Reopen preparation for v3: S2 still teaches Confirm cancellation and optional seven-day reminders. Ren and Nia must update help and retrain the assigned agents for Turn off renewal and the mandatory three-day billing notice.", "sources": ["inputs/product-v3.md", "inputs/help-training-v2.md"]},
+        {"id": "L-2", "severity": "major", "meaning": "ANN-2 covers v2; ANN-3 covers v3 but is only 16.75 hours before the unchanged launch. Earlier delivery cannot satisfy current-version notice timing. Jo must delay launch or record a human decision; no waiver is supplied.", "sources": ["inputs/product-v3.md", "inputs/operations-corrected.md", "inputs/company-rules.md"]},
+        {"id": "L-3", "severity": "major", "meaning": "SUP-3 is unsent; vendor agents have no supplied v3 notice or acknowledgement. Mira and Lee must distribute and confirm coverage of the new guidance.", "sources": ["inputs/product-v3.md", "inputs/operations-corrected.md", "inputs/company-rules.md"]}
+      ],
+      "non_findings": ["Do not reopen the refund policy, CRM contact-reason deployment, routing test or staffing acceptance solely because unrelated labels/reminder timing changed.", "Do not claim reminders or cancellation behavior actually changed in the existing app; this is the approved fixture specification.", "No launch delay, new training, notice delivery or waiver has yet been recorded."],
+      "calculations": {"announcement_deadline_utc": "2026-10-13T10:00:00Z", "v3_announcement_lead_hours": 16.75}
+    },
+    {
+      "id": "05-launch",
+      "phase_recommendation": "recommend pause",
+      "required_findings": [
+        {"id": "D-1", "severity": "critical", "meaning": "One-hour contact rate rose from 10 to 26 per 1,000 exposed accounts, 2.6 times the baseline. This passes the declared 2x pause-recommendation threshold; alert the recorded product/engineering owners with evidence.", "sources": ["inputs/launch-signals.csv", "inputs/company-rules.md"]},
+        {"id": "D-2", "severity": "critical", "meaning": "Two separate customers report a new $49 charge after recorded cancellation acknowledgements; this independently triggers a pause recommendation. Sam must inspect captures; do not dismiss these as KI-17 or promise refunds.", "sources": ["inputs/launch-customer-cases.json", "inputs/product-v2.md", "inputs/company-rules.md"]}
+      ],
+      "required_distinctions": ["Mira recommends, Jo authorizes and Dev executes a pause; none has happened yet at 11:10 UTC.", "Do not promise rollback or recovery for already exposed accounts.", "Counts trigger a conservative response but do not prove causality or statistical significance.", "Capture status is not yet confirmed; the customer reports plus support records are sufficient for the fictional pause threshold."],
+      "non_findings": ["L3 supplies revised content/training/operations and a delayed launch with timely current-version announcement; close L-1 through L-3.", "A mandatory billing notice to customers with reminder toggles off matches v3 and is not by itself a defect.", "The two customer cases are included in the 52 contacts; do not add them again.", "Limited rollout authorization and execution are recorded, but widening and pausing are not authorized."],
+      "calculations": {"revised_announcement_deadline_utc": "2026-10-17T10:00:00Z", "revised_announcement_lead_hours": 73, "baseline_contacts_per_1000": 10, "launch_contacts_per_1000": 26, "rate_ratio": 2.6, "absolute_contact_increase": 32}
+    },
+    {
+      "id": "06-follow-up",
+      "phase_recommendation": "follow-up incomplete",
+      "required_findings": [
+        {"id": "F-1", "severity": "major", "meaning": "C-102's refund processed and fix deployed, but customer confirmation is outstanding. Keep the support case open, retain Nia's Oct 23 follow-up and report the unresolved outcome to Jo and Dev.", "sources": ["inputs/post-launch-follow-up.md", "inputs/company-rules.md"]}
+      ],
+      "required_distinctions": ["Pause recommendation, authorization and execution now have separate records; new exposure stopped but the two settled charges required separate handling.", "BUG-31 engineering fixed and DEP-31 deployed are different from C-102 customer-confirmed resolution.", "BUG-32's duplicate closure is not a second fix or customer closure.", "C-101 has a customer reply, closure and FEED-101 feedback record; do not reopen it without contrary evidence.", "RF-102 shows processing completed, not that C-102 observed the refund.", "Six display-only contacts were separately confirmed; the two settled-charge cases were a distinct defect.", "No resume authorization is supplied; leave any resumption decision with Jo."],
+      "non_findings": ["Do not invent an unanswered request to engineering for the deployed fix; deployment evidence is supplied.", "Do not claim the whole feedback loop is complete, both customers confirmed recovery or rollout resumed."]
+    }
+  ]
+}

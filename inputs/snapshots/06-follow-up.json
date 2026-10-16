@@ -1,0 +1,29 @@
+{
+  "release_id": "RR-001",
+  "snapshot_id": "06-follow-up",
+  "as_of_utc": "2026-10-22T12:00:00Z",
+  "synthetic": true,
+  "instructions": "Review support readiness at this as-of time using only these files and earlier review outputs from the same lifecycle sequence. Cite evidence, separate facts from inference and unknowns, and propose human actions. No external actions.",
+  "files": [
+    {
+      "path": "inputs/company-rules.md",
+      "sha256": "6a984652563f74c426466d85040d48972d83dee51c12d0c71d605df11219eeda"
+    },
+    {
+      "path": "inputs/product-v2.md",
+      "sha256": "4b51b5996a035b36897af6957fd7f374fbab22ade3bc7815accf9687f3025f76"
+    },
+    {
+      "path": "inputs/product-v3.md",
+      "sha256": "0d5adae896290dbfebad9038093c0a4be8d08dc2371f4fd8c4e48a4c341a7d97"
+    },
+    {
+      "path": "inputs/launch-preparation-v3.md",
+      "sha256": "8d4ed61e1568b51e60a386684947b0a3d396afc443e62940c2b5d4ef469d69ba"
+    },
+    {
+      "path": "inputs/post-launch-follow-up.md",
+      "sha256": "0406c515fcd3be87057dae7c27b2492294bc889eba5e5a7d4c5d1b12eaa8c272"
+    }
+  ]
+}

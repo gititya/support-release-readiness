@@ -1,0 +1,21 @@
+{
+  "release_id": "RR-001",
+  "snapshot_id": "01-planning",
+  "as_of_utc": "2026-10-09T12:00:00Z",
+  "synthetic": true,
+  "instructions": "Review support readiness at this as-of time using only these files and earlier review outputs from the same lifecycle sequence. Cite evidence, separate facts from inference and unknowns, and propose human actions. No external actions.",
+  "files": [
+    {
+      "path": "inputs/company-rules.md",
+      "sha256": "6a984652563f74c426466d85040d48972d83dee51c12d0c71d605df11219eeda"
+    },
+    {
+      "path": "inputs/product-v1.md",
+      "sha256": "7b108229a26abb05eddb3d169e2aa2232b3b23bf3d8085b12496cc9e38b86637"
+    },
+    {
+      "path": "inputs/planning-notes.md",
+      "sha256": "b1fe58c0109545dd9d022beb78737bd3f39dc739403cd1a98e2c9ced7e2cb6b6"
+    }
+  ]
+}

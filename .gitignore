@@ -1,0 +1,24 @@
+.env*
+*.pem
+*.p12
+*serviceaccount*
+*service-account*
+*credentials*
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+.DS_Store
+# Local notes and generated review outputs stay private.
+/AGENTS.md
+/BUILDS.md
+/SKILL.md
+/PRD.md
+/EXPERIMENT.md
+/EXPERIMENT-2026-10-11.md
+/provenance.json
+/source-material/
+/acceptance-controls/
+/evidence/
+/docs/PUBLIC_README.md
