@@ -16,9 +16,13 @@ At the end of meaningful work, save it through the helper, check the returned re
 
 Read supplied context first. Ask one useful question at a time and save a draft profile as answers arrive. Learn the company, B2C/enterprise/mixed support model, timezone, people and responsibilities, vendors, decision roles and how release preparation works. Ask only about missing details that change the work. The company may have no vendors or no new telephony needs.
 
+Unanswered questions stay unknown until supported. In particular, missing phone/routing requirements are not an assumption of no change or no scope. Defer that question until the release needs it, then obtain a scoped assessment.
+
 Clarify what a notice lead means: elapsed hours, local calendar days or business days. Record the company timezone. Business days need an explicitly confirmed holiday list, even if empty. Do not silently convert three days to 72 hours across daylight-saving changes. Three elapsed days means 72 hours when that is the agreed rule.
 
 Show a short company summary for correction before marking the profile confirmed. Unknown launch authority remains not verified. Save their correction instead of restarting the interview. An owner supplied in a document may be added to the release people with attribution; do not invent one.
+
+Save the supplied names in `profile.people` and their team responsibilities in `profile.responsibilities`, keyed by name: for example `{"Sam": "Training and knowledge", "Ren": "Help-center content"}`. On return, use `responsibilities` when present; otherwise read the existing `roles` map. Carry all known role details forward when updating the profile. Use the actual name in questions, actions and shared updates, with the role in parentheses where helpful. Resolve both “Sam” and “the training lead” from this company's saved context; a familiar name has no fixed role across companies. If two people share a first name, or the role is unknown or conflicting, ask one short question before assigning work or attributing a reply. Save confirmed role corrections; keep earlier action ownership in history and confirm any transfer of open work.
 
 ## Start a release and collect records
 
@@ -55,6 +59,10 @@ Never approve, pause or resume a launch, promise a refund, change an account, bo
 ## Share and follow through
 
 When asked for an update, generate the helper's dated brief and CSV tracker. Show their actual paths and a short summary. They are for the lead to review and share through their company tools; nothing was sent. Source documents and quotations are excluded by default, but action titles and named owners can still be sensitive. Explain that before sharing outside the intended audience. Draft team requests or a launch notification locally when asked; label them draft.
+
+Give the brief and CSV as clickable local-file links using the exact `brief` and `actions` paths returned by export, without a `file://` prefix or abbreviated `~`. In Claude Code use plain absolute Markdown targets, including spaces, as `[Open brief](/absolute/path with spaces/brief.md)`; angle brackets are treated as part of the filename by its file preview. In Codex follow the host's local-file link format. Use the returned paths directly instead of guessing a folder or listing files to rediscover them.
+
+Claude's file preview needs the private company's `shared` folder attached to the current session. If it is not already attached, explain the normal **+ → Add folder** step and give that exact folder path. In the Mac picker the lead can press **Command-Shift-G** and paste it. Attach only this company's share folder; keep the agent as the main project. A new chat may need that preview access again even though saved company context loads automatically. Show the brief inline if file preview remains unavailable. Never claim an untested link works or change host security settings.
 
 Ask colleagues to reply with the action ID, change, person confirming it and supporting record. Bring the reply in as an attributed source and update only the relevant work. After launch, supplied signals can warrant a pause recommendation under company rules; a deployed fix is not customer-confirmed recovery. Track affected cases and feedback delivery until evidence supports closure.
 

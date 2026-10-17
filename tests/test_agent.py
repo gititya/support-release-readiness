@@ -88,6 +88,25 @@ class AgentTests(unittest.TestCase):
         self.assertEqual(fresh['revision'], 1)
         self.assertIsNone(fresh['lock'])
 
+    def test_named_team_leads_survive_return_and_export(self):
+        profile = {'status': 'confirmed', 'company': 'Named leads example', 'support_model': 'B2C',
+            'timezone': 'Asia/Kolkata', 'people': ['Mira', 'Sam', 'Ren', 'Jo'], 'launch_authority': 'Jo',
+            'notice_rule': {'unit': 'hours', 'amount': 72},
+            'responsibilities': {'Mira': 'Support readiness', 'Sam': 'Training and knowledge',
+                                 'Ren': 'Help-center content', 'Jo': 'Product and launch authority'}}
+        self.save('profile', profile=profile)
+        self.release(); self.source()
+        self.action(action_id='train', owner='Sam', area='training')
+        returned = self.status()
+        self.assertEqual(returned['profile']['responsibilities']['Sam'], 'Training and knowledge')
+        self.assertEqual(self.inspect()['release']['actions']['train']['owner'], 'Sam')
+        exported = self.call('export', {'expected_revision': returned['revision'], 'release_id': 'renewal'})
+        self.assertIn('Sam', Path(exported['actions']).read_text())
+        profile['responsibilities']['Sam'] = 'Training and vendor enablement'
+        self.save('profile', profile=profile)
+        self.assertEqual(self.status()['profile']['responsibilities']['Sam'], 'Training and vendor enablement')
+        self.assertEqual(self.inspect()['release']['actions']['train']['owner'], 'Sam')
+
     def test_confirmed_profile_requires_people_and_notice_rule(self):
         bad = self.process('profile', {'expected_revision': 0, 'actor': 'Adi', 'summary': 'Bad context', 'profile': {'status': 'confirmed'}})
         self.assertNotEqual(bad.returncode, 0)
