@@ -2,11 +2,11 @@
 
 This is the continuing Release Readiness agent, defined in [the PRD](AGENT-PRD.md). It keeps company context, release evidence, owner actions and history between conversations. Open [the agent folder](../agent/START%20HERE.md) to use it. The earlier checklist comparison has not been rerun or rescored.
 
-The implementation is built. Claude's main desktop flow has now been exercised on one Mac, including fresh-chat return and opening the share files. Codex desktop and an unfamiliar support-lead trial remain unverified. These results support a supervised pilot, not a claim that every work laptop is ready to use it.
+The implementation is built. Claude's main desktop flow has been exercised on one Mac, including fresh-chat return, opening the share files and the revised starter. A user-operated Codex chat also loaded the product and resumed the saved release after an explicit recovery from an empty-folder start. Codex's normal first setup and file preview, and an unfamiliar support-lead trial, remain unverified. These results support a supervised pilot, not a claim that every work laptop is ready to use it.
 
 ## Software checks
 
-All 78 offline tests pass on the developer Mac: the original 42 checks, 34 native helper checks and two packaging checks. The added name-directory check covers saved responsibilities, named ownership in the CSV and role corrections. The native checks exercise the actual built-in macOS helper, not a Python replacement. They cover separate release records, source versions and exact passages, completion evidence, affected-work reopening, dates and rates, concurrent saves, interrupted writes, damaged records, preserved manual edits and package replacement. [The October 16 GitHub run](https://github.com/gititya/support-release-readiness/actions/runs/38930234199) ran the earlier 77 successfully; Linux explicitly skipped its 33 native checks.
+All 78 offline tests pass on the developer Mac: the original 42 checks, 34 native helper checks and two packaging checks. The added name-directory check covers saved responsibilities, named ownership in the CSV and role corrections. The native checks exercise the actual built-in macOS helper, not a Python replacement. They cover separate release records, source versions and exact passages, completion evidence, affected-work reopening, dates and rates, concurrent saves, interrupted writes, damaged records, preserved manual edits and package replacement. [The October 17 GitHub run](https://github.com/gititya/support-release-readiness/actions/runs/39037965002) ran all 78 on macOS; Linux explicitly skipped its 34 native checks. The startup repair received another local 78-test pass.
 
 The rate fixture gives 10 contacts per 1,000 before launch and 26 after launch: a 2.6 ratio, 16 more contacts per 1,000 and 32 more contacts. Date cases distinguish elapsed hours from local calendar/business days, including daylight-saving changes and supplied holidays. Independent standard-library results check the native date and SHA-256 calculations.
 
@@ -50,7 +50,23 @@ A fresh Claude CLI conversation with the final package then used the returned ab
 
 The product also now explicitly keeps unanswered phone/routing scope unknown. The initial onboarding response had assumed no phone change, although its saved profile correctly marked the question unknown. The release and later responses retained Alex's required scoped assessment.
 
-The Mac locked partway through testing. Work paused until the owner unlocked it manually; no unlocking or security bypass was attempted. The computer-control tool separately refused access to Codex itself. That desktop check remains blocked.
+The Mac locked partway through testing. Work paused until the owner unlocked it manually; no unlocking or security bypass was attempted. The computer-control tool separately refused access to Codex itself. Direct automation of that app remains blocked; the later user-operated recovery is recorded below.
+
+## Empty-folder repair and Codex return, October 17
+
+The user tried the suggested Codex return and supplied the resulting chat. Its main folder was an empty folder named `agent`, without the product files. It treated the release name as an unpaid-invoice question and searched connected records. This is a failed product-entry attempt, retained alongside the successful recovery; a passing software suite did not catch it.
+
+The user then supplied the explicit product-instruction recovery. The actual Codex turn read AGENTS.md and OPERATIONS.md, ran the native home/status/inspect operations, discovered the existing Cedar Support Demo workspace at revision9 and returned Sam Patel's two open tasks with no confirmed due dates or completion. This establishes user-operated read/resume behavior in Codex. The computer-control tool still cannot operate Codex; no bypass was used.
+
+Version0.2.2 keeps the same six-file product and state schema. The start guide now explains selecting an existing folder and making it primary, shows the expected contents and supplies a starter that stops when the product is missing. The agent checks its required files and helper before confirming **Release Readiness loaded**. This is a product-load confirmation, not launch approval. Instructions contain no machine-specific install path. The guide also covers the supplied materials, daily work, named leads, sharing, colleague replies, work-account approval and replacing the product while retaining company records. The root README remains unchanged.
+
+Four fresh CLI checks used a frozen package and isolated synthetic workspaces. In both hosts, the empty-folder starter reported missing files, asked for the existing downloaded folder and wrote no company records. In both hosts, the extracted product loaded, retained the saved company and named owners, and generated a brief and CSV while preserving the original nine records. Codex kept revision9; Claude saved a fresh planning review at revision10 in its separate copy. No task was falsely completed, no due date was invented and no external action occurred. These are instruction checks, not desktop-click evidence.
+
+The first attempt to launch those model checks failed before product behavior could be assessed: the outer sandbox blocked Codex's app server and Claude's existing sign-in access. Those attempts are preserved as launch failures. Repeating with the authorized signed-in tools succeeded; no installation, login change or global permission change occurred.
+
+In a new actual Claude Desktop session, the author selected the extracted product as the main folder and sent the guide's exact starter. With the app's existing Local / Auto / Sonnet 5.5 Medium settings, it checked the files and helper, confirmed **Release Readiness loaded**, found the confirmed Cedar Support Demo profile and asked whether to continue Invoice history. No full-path recovery prompt or repeated company interview was needed, and the live accepted records stayed at revision9. That startup check preceded a final Codex-only link-format clarification; it did not change the startup behavior.
+
+A final targeted Codex CLI turn checked that clarification in the final package: paths containing spaces now use the host's angle-bracket link targets, while Claude retains its separately tested plain-path format. Both returned paths exist; the brief and CSV preserve all four open actions. Codex file-preview opening itself still needs a desktop check. Final-package checks are targeted repairs, not a replay of every lifecycle case or a new checklist comparison.
 
 ## Failures and repairs
 
@@ -72,7 +88,7 @@ The final targeted Opus 5.5 verdict was **Proceed**. It found a nonblocking work
 
 ## Acceptance still needed
 
-- A01, A09 and A18: complete the Codex desktop check and check browser-download quarantine and permission modes beyond the existing Claude Auto session. Claude's main-folder setup, fresh-chat resume, product-folder update and file opening have the bounded evidence above.
+- A01, A09, A18 and A21: complete normal Codex desktop first setup and file opening, browser-download quarantine and permission modes beyond the existing Claude Auto sessions. The user-operated Codex recovery/resume and author-operated Claude setup, return, product update and file opening have the bounded evidence above. Fresh-host missing-folder checks establish the starter's behavior, not a pass for opening the right folder in every app.
 - A04 and A15: check unreadable attachments and blocked permissions through those actual apps. Text intake, quote rejection and unavailable-helper behavior already have software or CLI evidence.
 - A11, A19 and A20: an unfamiliar support lead completes onboarding, review, return, named-lead work and sharing without developer help, then judges the usefulness on an unfamiliar release. Actual Claude file opening and name clarification were author-operated checks.
 

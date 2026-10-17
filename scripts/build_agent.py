@@ -13,7 +13,7 @@ def build(output):
     output = Path(output)
     output.parent.mkdir(parents=True, exist_ok=True)
     bodies = {name: (ROOT / 'agent' / name).read_bytes() for name in FILES}
-    manifest = {'name': 'Support Release Readiness', 'version': '0.2.1', 'state_schema': 1,
+    manifest = {'name': 'Support Release Readiness', 'version': '0.2.2', 'state_schema': 1,
                 'supported_target': 'macOS local Codex and Claude Code desktop sessions',
                 'readiness': 'Desktop and independent-user acceptance gates remain separate from software tests',
                 'files': {name: hashlib.sha256(body).hexdigest() for name, body in bodies.items()}}
