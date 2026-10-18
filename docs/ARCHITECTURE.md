@@ -1,5 +1,7 @@
 # Instructions, tools and runtime
 
+The continuing agent is in [the ready-to-open product folder](../agent/START%20HERE.md). Its [PRD](AGENT-PRD.md) and [build spec](AGENT-SPEC.md) cover onboarding, private saved records, multiple releases, tracked actions and sharing in either supported desktop host. Its native macOS helper needs no Python or Node installation. The implementation below describes the earlier bounded reviewer, retained for development comparisons; it is a separate execution path, not the agent's setup experience.
+
 The whole product is an assistant for a support lead. The skill supplies its review process. Python validates inputs, calculates exact quantities and writes reports. Codex provides the model runtime through the person's existing login.
 
 ```mermaid

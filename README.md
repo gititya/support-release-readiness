@@ -1,59 +1,79 @@
 # Support Release Readiness
 
-A local AI assistant for the support lead preparing a product launch. It reads release plans and support preparation records, identifies work that still needs an owner, and revisits that work when the product changes.
+A product release involves dependencies and decisions from planning through launch. A Project or Program Manager, or someone in Product Operations, usually coordinates that work.
 
-This project comes from the release-readiness work I did in B2C support: joining planning and design reviews, feeding customer friction back into the product, coordinating training and content, preparing vendors and operations, watching a rollout and closing customer feedback after fixes.
+Customer Support has its own set of dependent teams. Depending on the company, these include:
 
-## What it does
+1. **Support Delivery:** agent feedback, process readiness and, in some companies, vendor relationships and delivery.
+2. **Support Technical Operations:** telephony, IVR, CRM management and development, and the implementation of support tools.
+3. **Support Enablement & Operations:** processes, policies, quality and conversation design for chatbots.
+4. **Knowledge Management:** training, knowledge articles for human and AI agents, and public Help Center content.
 
-Suppose the product now requires billing confirmation before cancellation completes. Training still says clicking the button completes cancellation, and the vendor launch notice is only a draft. The assistant should identify the incorrect guidance, ask the named owners to revise training and content, and distinguish a draft notice from one agents received.
+A Project Manager or Enablement lead may coordinate sign-off before launch. The work also involves managing dependencies across these teams and keeping support preparation aligned with the overall product release.
 
-It also identifies what can remain complete. A changed button label does not automatically create new CRM or telephony work. A deployed fix does not automatically close an affected customer's case.
+I wanted to test whether an agent could help a support lead keep track of this work as the product changes. This is a **portfolio proof of work**, built and tested with fictional releases, teams and customer cases.
 
-| Support work | What it reviews |
+## What the agent does
+
+Release Readiness works through conversation in **Codex or Claude Code on a Mac**. During setup, it interviews the support lead, learns the company's launch process and saves the context. You can supply team roles, named owners and external vendors.
+
+| Capability | What it handles |
 | --- | --- |
-| Planning and design | Open decisions, customer friction and product changes that could prevent contacts |
-| Agent enablement | Training revision, completion, roster coverage and access |
-| Help and known issues | Public/internal guidance, publication, safe handling, escalation and approvals |
-| Vendors and staffing | Vendor readiness, volume/AHT assumptions, reserve and accepted coverage |
-| Support operations | CRM reasons/mappings on internal/vendor forms, routing and scoped infrastructure assessments |
-| Communications | Current revision/audience, three-day product notice, support/vendor delivery and acknowledgement |
-| Launch monitoring | Comparable contact rates, categories, customer reports and supplied pause rules |
-| Customer follow-up | Engineering fix, deployment, remedy, customer confirmation and product feedback |
+| **Onboarding and memory** | Learns the company, launch rules, teams and named leads; remembers them between chats. |
+| **Evidence and readiness review** | Reads supplied plans and preparation, identifies gaps, and distinguishes proposals from approved or completed work. |
+| **Change assessment** | Identifies which preparation needs revisiting when product behavior changes; retains unaffected work. |
+| **Owner and action tracking** | Keeps named owners, statuses, dates, completion evidence and history. Clarifies ambiguous names. |
+| **Dates and launch signals** | Calculates announcement deadlines, staffing arithmetic and contact-rate comparisons using supplied data. |
+| **Sharing and follow-up** | Creates briefs and CSV trackers, records colleague replies, and tracks defects through customer confirmation. |
 
-[Scope and company use](docs/SCOPE.md) explains coverage. The first demo is a **fictional B2C cancellation and renewal release**. All people, receipts, metrics, approvals and customer cases are authored examples. Enterprise-specific contracts, administrators and version coverage remain untested.
+For each release, it helps with:
+
+- **Planning:** product decisions, affected customers and friction that could lead to contacts.
+- **Preparation:** training, help content, known issues, vendors and staffing.
+- **Operations:** CRM categories, routing and support infrastructure.
+- **Communications:** product announcements, support notifications, delivery and acknowledgement.
+- **Launch and follow-up:** supplied contact volumes, defects, fixes and customer confirmation.
+
+It keeps owner actions, dates, supporting records and history between conversations. You can return and ask, “What work is waiting for Sam?” without explaining the company again.
+
+### Changes to an existing product
+
+For an incremental release, the agent compares the updated product behavior with the preparation already recorded. It identifies work that is incomplete or needs another review, while retaining completed work that the change does not affect.
+
+A drafted announcement has not been delivered. A deployed fix does not confirm that the customer's problem is resolved. These distinctions stay visible in the release record.
 
 ## Try it
 
-Read the [six saved examples](examples/README.md) first; no account or model call is needed. [Read the skill](skills/support-release-readiness/SKILL.md) for the operating process and [the tools](docs/ARCHITECTURE.md) for how it runs.
+You need Codex or Claude Code, local file access and permission to use the selected material with your model account. No Python, Node or terminal setup is needed for the support lead.
 
-Local runs require Python 3.11 or newer and an installed, signed-in Codex CLI. There are no Python packages to install. From the repository folder:
+1. Download and unzip the repository.
+2. Open its existing **`agent` folder** as the main local project. In Codex, make it the primary folder; in Claude Desktop, use the Code tab and select it as the main folder.
+3. Paste this starter message:
 
-```sh
-python3 -m readiness prepare inputs/snapshots/04-late-change.json
-python3 -m readiness review inputs/snapshots/04-late-change.json --output evidence/my-review
-python3 -m readiness capacity --contacts 60 --aht 10 --reserve-hours 4
-python3 -m unittest discover -s tests -v
-```
+> Start Release Readiness from this folder. Check that AGENTS.md, OPERATIONS.md, REVIEW.md and tools/records.js are present. If any are missing, stop and tell me to choose the existing downloaded folder. Otherwise follow AGENTS.md and set me up.
 
-`prepare` validates documents and prints date/rate calculations without a model. `review` writes `report.md` and `report.json`; use a new output folder each time. Capacity gives 600 handling minutes, 10 agent-hours and six hours above the reserve; it predicts neither demand nor waiting time.
+The agent checks that it loaded, then begins onboarding or finds your saved company context. [START HERE](agent/START%20HERE.md) has the full setup and file-access steps.
 
-The tested account used `gpt-5.6-sol` with high reasoning. Use `--model MODEL_NAME` for an alternative supported by your CLI/account. [Supplying a company release](docs/ARCHITECTURE.md#supply-your-own-release) explains document selection and prior-review history.
+Say **Start a release** and provide the product plan, affected customers, proposed launch date and whatever support preparation exists. Incomplete material is fine; missing information stays open.
 
-**Data handling:** selected documents go to the model service through your Codex login and consume model allowance. Outputs contain document copies and model responses. Check company policy and keep those outputs private before using company material. The demo contains synthetic data only.
+You can then ask:
 
-## What was learned
+> What does support still need before this launch?
 
-A completed comparison used the same model to review six stages twice with this process and twice with a generic checklist: **24 reviews**. Both identified all authored critical and major risks. The specialized version handled phases and unchanged work better, but did not demonstrate better risk detection and omitted one required calculation. It did not meet the declared keep rule.
+> The product plan has changed. Which preparation needs another look?
 
-The publication revision adds clear priority rules and appends the helper's contact comparison directly. The earlier comparison remains a result of its saved version. [Evaluation, original reports and repairs](docs/EVALUATION.md) distinguish software tests, model evaluations and remaining uncertainty.
+> Prepare the release brief and action list for the team.
+
+The agent creates a dated brief and CSV tracker. Review and share them through your normal company tools, then bring colleagues' replies back to update the work. One person updates the private working record at a time.
+
+For a look at the fictional release without running a model, read the [saved examples](examples/README.md). The [verification report](docs/AGENT-VERIFICATION.md) records the agent checks and remaining limits; [evaluation](docs/EVALUATION.md) preserves the earlier checklist comparison.
 
 ## Boundaries
 
-This is an on-demand document-review prototype using a local Python command and Codex. It has no shared company app or live Jira, Salesforce, Slack or telephony connection. A support lead reviews proposals and owns approvals and external actions.
+The agent helps the support lead coordinate preparation and follow-up. The lead owns launch recommendations, approvals and external actions. The agent does not send messages, book staffing, change customer accounts or pause a rollout.
 
-Only explicitly selected inputs reach the reviewer. Paths, fingerprints and exact current quotations are checked. Task tools and outside-file access are restricted; unexpected tool events reject a report. Those controls do not prove that every recommendation is correct. [Security and data handling](SECURITY.md) describes the boundary.
+There are no Zendesk or Fin connections, live shared board or background monitoring. Working records stay locally outside the downloaded product folder; selected material goes through the chosen model account. Company use needs approved material and an approved account.
 
-One familiar fictional release does not establish reliability on unseen releases, enterprise readiness or fewer customer contacts. This portfolio project demonstrates the support operating process, its implementation and an honest comparison.
+The fictional scenarios demonstrate the support process and its implementation. They do not establish fewer customer contacts or reliability in a real support operation.
 
 Part of [Evidence-first Support](https://github.com/gititya/evidence-first-support).
